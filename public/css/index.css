@@ -1,0 +1,18 @@
+body, html {
+    height: 100%;
+}
+
+.bg {
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("/../img/color_pencils.jpg");
+
+}
+
+
+.header{
+  padding-top:150px;
+  font-size: 1.5em;
+}

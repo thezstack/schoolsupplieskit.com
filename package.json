@@ -1,0 +1,16 @@
+{
+  "name": "goc-node",
+  "version": "1.0.0",
+  "description": "app to sell school supply kits",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "stripe": "^5.4.0"
+  }
+}
