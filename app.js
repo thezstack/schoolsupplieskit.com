@@ -1,5 +1,6 @@
 const express = require('express');
-const stripe = require('stripe')('sk_test_HF8skRtQCqBX1AotyCfJQNKA');
+const keys = require('./config/keys')
+const stripe = require('stripe')('keys.stripeSecretKey');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 
@@ -25,10 +26,29 @@ app.use(express.static(`${__dirname}/public`));
 
 // Index Route
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index'), {
+    stripePublishableKey: keys.stripePublishableKey
+  }
 
 
 })
+
+//Charge Route
+app.post('/charge', (req, res) => {
+  const amount = 5000;
+
+  stripe.customers.create({
+    email: req.body.stripeEmail,
+    source: req.body.stripeToken
+  })
+  .then(customer => stripe.charges.create({
+    amount,
+    description: 'HQA School Supply Kit',
+    currency: 'usd',
+    customer: customer.id
+  }))
+  .then(charge => res.render('success'));
+});
 
 app.listen(port, () => {
 
