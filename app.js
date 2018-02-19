@@ -33,9 +33,24 @@ app.get('/', (req, res) => {
 
 })
 
+app.get('/success', (req, res) => {
+  res.render('success'), {
+  }
+
+
+})
+
+app.get('/contact', (req, res) => {
+  res.render('contact'), {
+  }
+
+
+})
+
 //Charge Route
 app.post('/charge', (req, res) => {
   const amount = 5000;
+  res.send('TEST')
 
   stripe.customers.create({
     email: req.body.stripeEmail,
