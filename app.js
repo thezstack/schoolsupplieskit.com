@@ -47,6 +47,14 @@ app.get('/contact', (req, res) => {
 
 })
 
+
+app.get('/hqa', (req, res) => {
+  res.render('hqa'), {
+  }
+
+
+})
+
 //Charge Route
 app.post('/charge', (req, res) => {
   const amount = 5000;
