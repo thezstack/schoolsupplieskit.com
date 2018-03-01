@@ -3,11 +3,16 @@ const keys = require('./config/keys')
 const stripe = require('stripe')('keys.stripeSecretKey');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
-
 const app = express();
 
 const port = process.env.PORT || 5000;
 
+// Mongo
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/hqa-products');
+
+// Model
+const product = require('./models/product');
 
 //Handlebars Middleware
 
@@ -27,33 +32,41 @@ app.use(express.static(`${__dirname}/public`));
 // Index Route
 app.get('/', (req, res) => {
   res.render('index'), {
+
     stripePublishableKey: keys.stripePublishableKey
   }
 
 
 })
-
+//Success Route
 app.get('/success', (req, res) => {
   res.render('success'), {
   }
 
 
 })
-
+// Contact Route
 app.get('/contact', (req, res) => {
   res.render('contact'), {
   }
 
-
+//HQA Store Front
 })
 
 
 app.get('/hqa', (req, res) => {
-  res.render('hqa'), {
-  }
+
+  product.find(function(err, docs) {
+        var productChunks = [];
+        var chunkSize = 3;
+        for (var i = 0; i < docs.length; i += chunkSize) {
+            productChunks.push(docs.slice(i, i + chunkSize));
+        }
+        res.render('hqa', { title: 'Shopping Cart', products: productChunks });
+    });
+  });
 
 
-})
 
 //Charge Route
 app.post('/charge', (req, res) => {
