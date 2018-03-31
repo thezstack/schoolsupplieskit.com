@@ -6,7 +6,7 @@ const exphbs = require('express-handlebars');
 const app = express();
 const csrf = require('csurf');
 const csrfProtection = csrf();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3400;
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 

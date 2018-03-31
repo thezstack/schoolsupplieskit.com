@@ -21,3 +21,25 @@ body, html {
 .product-container{
   margin-top:50px;
 }
+
+
+
+.border-colorx{
+
+    border-color: yellow;
+
+}
+
+
+.img-width{
+  width:50%;
+}
+
+.card-space{
+  margin-bottom:2em;
+}
+
+.img-width-sm{
+  width: 45%;
+  margin-bottom:1em;
+}
